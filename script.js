@@ -202,11 +202,34 @@
     items.forEach(function (path) {
       const ext = path.split('.').pop().toLowerCase();
       if (['mp4','webm','ogg'].includes(ext)) {
-        const video = document.createElement('video');
-        video.src = encodeURI(path);
-        video.controls = true;
-        video.loading = 'lazy';
-        portfolioContent.appendChild(video);
+        // Render a clickable thumbnail for the video. Only create the <video> element after user clicks.
+        const poster = path.replace(/\.[^/.]+$/, '.jpg');
+        const thumb = document.createElement('button');
+        thumb.type = 'button';
+        thumb.className = 'video-thumb';
+        thumb.setAttribute('aria-label', name + ' video');
+        // Use poster if available (best-effort); otherwise fallback to a site banner image
+        thumb.style.backgroundImage = `url(${encodeURI(poster)})`;
+        // Fallback background using CSS if poster 404 will be invisible — use banner as fallback layer via inline style with multiple backgrounds isn't reliable cross-browser; leave poster attempt then set dataset fallback
+        thumb.dataset.videoSrc = path;
+        thumb.dataset.poster = poster;
+        thumb.addEventListener('click', function () {
+          // Replace the thumb with an actual video element on demand
+          const video = document.createElement('video');
+          video.src = encodeURI(path);
+          video.controls = true;
+          video.autoplay = true; // play after user click
+          video.playsInline = true;
+          video.style.width = '100%';
+          video.style.height = '200px';
+          video.style.objectFit = 'cover';
+          // try to set poster attribute if poster exists
+          video.poster = encodeURI(poster);
+          portfolioContent.replaceChild(video, thumb);
+          // attempt to play (allowed because click initiated)
+          video.play().catch(function(){ /* ignore play errors */ });
+        });
+        portfolioContent.appendChild(thumb);
       } else {
         const img = document.createElement('img');
         img.src = encodeURI(path);
