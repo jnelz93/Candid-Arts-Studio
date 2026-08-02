@@ -272,11 +272,6 @@
     openLightbox(parseInt(item.dataset.index, 10));
   });
 
-  gallery.addEventListener("click", function (e) {
-    const item = e.target.closest(".gallery-item");
-    if (!item) return;
-    openLightbox(parseInt(item.dataset.index, 10));
-  });
 
   lightboxClose.addEventListener("click", closeLightbox);
   lightboxPrev.addEventListener("click", showPrevImage);
