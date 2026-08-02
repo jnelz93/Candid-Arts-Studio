@@ -8,5 +8,17 @@
   <body>
     <!-- Netlify CMS: the config file is at /admin/config.yml -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <!-- Netlify Identity widget to enable login (required for Git Gateway) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      // Initialize identity widget and redirect to admin after login
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', function(user) {
+          if (!user) {
+            window.netlifyIdentity.on('login', function() { document.location.href = '/admin/'; });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
