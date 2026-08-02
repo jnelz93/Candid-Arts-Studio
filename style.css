@@ -443,6 +443,46 @@ section h2 {
   box-shadow: var(--shadow-sm);
 }
 
+/* Highlight the featured (Gold) package */
+.pricing-card--featured {
+  background: linear-gradient(180deg, rgba(255,248,240,0.98), #fff);
+  border: 2px solid rgba(255,200,120,0.9);
+  box-shadow: 0 8px 30px rgba(101, 67, 38, 0.18);
+  transform: translateY(-6px);
+}
+
+.pricing-card--featured .pricing-amount {
+  color: #8b4b00; /* warm accent */
+}
+
+.pricing-card--featured .pricing-badge {
+  background: #ffd39b;
+  color: #6b3f1f;
+  font-weight: 800;
+}
+
+/* Make action buttons wider on small screens for better touch targets */
+@media (max-width: 767px) {
+  .pricing-card .btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+/* Center the featured card on wider screens */
+@media (min-width: 768px) {
+  .pricing-card--featured {
+    grid-column: 2 / 3; /* place in the middle column */
+    padding: 40px 28px;
+  }
+
+  /* Slightly enlarge featured card content */
+  .pricing-card--featured .pricing-amount {
+    font-size: 1.8rem;
+  }
+}
+
 .pricing-badge {
   position: absolute;
   top: -12px;
