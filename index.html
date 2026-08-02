@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Candid Art Studios — wedding, pre-nup, and event photography in Cebu. Capturing love, life, and moments with authenticity and artistry.">
+  <meta property="og:title" content="Candid Art Studios">
+  <meta property="og:description" content="Professional wedding, pre-nup, and event photography in Cebu, Philippines.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/banner.jpg">
+  <title>Candid Art Studios | Wedding & Event Photography in Cebu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero" id="home">
+    <div class="hero-bg">
+      <img src="images/banner.jpg" alt="" class="hero-bg-image" aria-hidden="true">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <img src="images/banner.jpg" alt="Candid Art Studios" class="hero-logo">
+      <h1>Candid Art Studios</h1>
+      <p>Capturing Love, Life, and Moments in Cebu</p>
+      <a href="#contact" class="btn btn-primary">Book a Session</a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand">Candid Art</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- About Us -->
+    <section id="about" class="fade-in">
+      <h2>About Us</h2>
+      <p>
+        At <strong>Candid Art Studios</strong>, we believe every moment deserves to be captured with authenticity and artistry.
+        Based in Cebu, our team specializes in weddings, pre-nup shoots, and event coverage.
+        With a passion for storytelling through photography, we combine candid emotions with creative framing to deliver timeless memories.
+      </p>
+      <p>
+        Our mission is simple: to make your special day unforgettable by preserving genuine smiles, heartfelt emotions, and once-in-a-lifetime experiences.
+      </p>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="fade-in">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <article class="service">
+          <img src="images/events.jpg" alt="Event coverage photography" loading="lazy">
+          <h3>Events</h3>
+          <p>Professional coverage for birthdays, corporate events, and more.</p>
+        </article>
+        <article class="service">
+          <img src="images/wedding.jpg" alt="Wedding photography" loading="lazy">
+          <h3>Wedding Photography</h3>
+          <p>Full coverage of your big day with candid and creative shots.</p>
+        </article>
+        <article class="service">
+          <img src="images/prenup.jpg" alt="Pre-nup photography session" loading="lazy">
+          <h3>Pre-Nup Shoots</h3>
+          <p>Romantic pre-wedding sessions at scenic Cebu locations.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="fade-in">
+      <h2>Portfolio</h2>
+      <p class="section-intro">Browse some of our favorite shoots.</p>
+      <div class="gallery" id="gallery">
+        <button class="gallery-item" type="button" data-index="0" aria-label="View sample shoot 1">
+          <img src="images/port1.jpg" alt="Sample wedding shoot" loading="lazy">
+        </button>
+        <button class="gallery-item" type="button" data-index="1" aria-label="View sample shoot 2">
+          <img src="images/port2.jpg" alt="Sample pre-nup shoot" loading="lazy">
+        </button>
+        <button class="gallery-item" type="button" data-index="2" aria-label="View sample shoot 3">
+          <img src="images/port3.jpg" alt="Sample event shoot" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="fade-in">
+      <h2>Packages & Pricing</h2>
+      <p class="section-intro">Flexible packages tailored to your special day. Contact us for custom quotes.</p>
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <h3>Events</h3>
+          <p class="pricing-amount">From ₱8,000</p>
+          <ul>
+            <li>Up to 4 hours coverage</li>
+            <li>100+ edited photos</li>
+            <li>Online gallery delivery</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get a Quote</a>
+        </article>
+        <article class="pricing-card pricing-card--featured">
+          <span class="pricing-badge">Most Popular</span>
+          <h3>Wedding</h3>
+          <p class="pricing-amount">From ₱25,000</p>
+          <ul>
+            <li>Full-day coverage</li>
+            <li>300+ edited photos</li>
+            <li>Pre-wedding consultation</li>
+            <li>Online gallery + USB</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get a Quote</a>
+        </article>
+        <article class="pricing-card">
+          <h3>Pre-Nup</h3>
+          <p class="pricing-amount">From ₱12,000</p>
+          <ul>
+            <li>Half-day session</li>
+            <li>80+ edited photos</li>
+            <li>Location scouting assist</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get a Quote</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="fade-in">
+      <h2>Testimonials</h2>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">"Candid Art Studios transformed our wedding day into timeless memories!"</p>
+          <footer>
+            <cite>Client A</cite>
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">"Professional, friendly, and creative team. Highly recommended."</p>
+          <footer>
+            <cite>Client B</cite>
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="fade-in">
+      <h2>Contact Us</h2>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p>Ready to capture your moments? Reach out and let's plan your session.</p>
+          <ul class="contact-links">
+            <li>
+              <a href="mailto:ray.canoneo@gmail.com">ray.canoneo@gmail.com</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/candidartstudios" target="_blank" rel="noopener noreferrer">Facebook — Candid Art Studios</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/candid.art.studios/" target="_blank" rel="noopener noreferrer">Instagram — @candid.art.studios</a>
+            </li>
+          </ul>
+        </div>
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+            <span class="form-error" id="name-error" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+            <span class="form-error" id="email-error" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="5"></textarea>
+            <span class="form-error" id="message-error" role="alert"></span>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Candid Art Studios. All rights reserved.</p>
+      <ul class="footer-social">
+        <li><a href="https://www.facebook.com/candidartstudios" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://www.instagram.com/candid.art.studios/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="mailto:ray.canoneo@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Portfolio image viewer" hidden>
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close gallery">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox-next" id="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
+    <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
