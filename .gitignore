@@ -1,4 +1,40 @@
+# ==========================
+# System Files
+# ==========================
 .DS_Store
 Thumbs.db
 desktop.ini
 *.log
+
+# ==========================
+# Temporary Test Files
+# ==========================
+test.mp4
+compressed-test.mp4
+
+# ==========================
+# FFmpeg (local only)
+# ==========================
+ffmpeg/
+
+# ==========================
+# Optional Local Upload Folder
+# (only if you no longer use it)
+# ==========================
+UploadQueue/
+
+# ==========================
+# Editor Files
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# Node (if ever added)
+# ==========================
+node_modules/
+
+# OS thumbnails/cache
+ehthumbs.db
+*.tmp
+Video Backup Original/

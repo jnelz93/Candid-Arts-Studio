@@ -116,9 +116,15 @@ textarea:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background-image: url('images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-bg-image {
+  /* keep the inline img hidden since background-image provides the same decorative visual */
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -721,15 +727,15 @@ section h2 {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 9999; /* ensure lightbox always sits above modals */
   background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ---- Portfolio modal ---- */
-.portfolio-modal {
+/* ---- Gallery modal ---- */
+.gallery-modal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
@@ -738,61 +744,118 @@ section h2 {
   justify-content: center;
   z-index: 220;
 }
-.portfolio-modal-inner {
+.gallery-modal[hidden] { display: none; }
+.gallery-modal-inner {
   width: min(1100px, 96%);
   max-height: 90vh;
-  overflow: auto;
+  overflow: auto; /* scrolls internally */
   background: var(--color-surface);
   padding: 20px;
   border-radius: 10px;
   box-shadow: var(--shadow-md);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.portfolio-modal-close {
-  position: absolute;
+.gallery-modal-close {
+  /* make close button stick to the top of the modal viewport while scrolling */
+  position: sticky;
+  top: 12px;
   right: 12px;
-  top: 8px;
+  align-self: flex-end;
   background: none;
   border: none;
   font-size: 1.6rem;
   cursor: pointer;
+  z-index: 10;
 }
-.portfolio-sections {
+.gallery-sections {
   display: flex;
   gap: 8px;
   margin: 12px 0 18px 0;
   flex-wrap: wrap;
 }
-.portfolio-sections button {
+.gallery-sections button {
   background: transparent;
   border: 1px solid var(--color-border);
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
 }
-.portfolio-sections button.active {
+.gallery-sections button.active {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
 }
-.portfolio-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.gallery-content {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
-.portfolio-content img,
-.portfolio-content video {
+.gallery-content img,
+.gallery-content video {
   width: 100%;
-  height: 200px;
+  height: auto;
   object-fit: cover;
   border-radius: 6px;
 }
 @media (max-width: 768px) {
-  .portfolio-content { grid-template-columns: repeat(2, 1fr); }
-  .portfolio-content img, .portfolio-content video { height: 140px }
+  .gallery-content img, .gallery-content video { height: auto }
 }
 @media (max-width: 420px) {
-  .portfolio-content { grid-template-columns: 1fr; }
+  .gallery-content { grid-template-columns: 1fr; }
+}
+
+/* Client modal photo grid and load more */
+.gallery-client-photos {
+  /* CSS Grid based photo grid: responsive columns, equal spacing, natural flow */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.masonry-item {
+  /* simple item wrapper for consistent spacing */
+  margin: 0;
+}
+.masonry-item img {
+  width: 100%;
+  height: 160px; /* uniform thumbnail height for balanced grid */
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .gallery-client-photos { grid-template-columns: repeat(2, 1fr); }
+  .masonry-item img { height: 140px; }
+}
+@media (max-width: 768px) {
+  .gallery-client-photos { grid-template-columns: repeat(2, 1fr); }
+  .masonry-item img { height: 120px; }
+}
+@media (max-width: 420px) {
+  .gallery-client-photos { grid-template-columns: 1fr; }
+  .masonry-item img { height: 160px; }
+}
+
+.load-more {
+  display: block;
+  margin: 12px auto 0 auto;
+  text-align: center;
+}
+.video-player {
+  margin-top: 12px;
+}
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.video-item {
+  text-align: left;
 }
 
 /* Video thumbnail (click to load and play) */
