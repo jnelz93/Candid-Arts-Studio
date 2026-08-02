@@ -101,6 +101,11 @@
         <button class="gallery-item" type="button" data-index="2" aria-label="View sample shoot 3">
           <img src="images/port3.jpg" alt="Sample event shoot" loading="lazy">
         </button>
+
+        <!-- Mark & Trixie event gallery entry -->
+        <button class="gallery-item" type="button" data-gallery="mark-trixie" aria-label="Open Mark & Trixie gallery">
+          <img src="Mark & Trixie/Photos/SDE 4-58.jpg" alt="Mark & Trixie thumbnail" loading="lazy">
+        </button>
       </div>
     </section>
 
@@ -210,12 +215,17 @@
             <span class="form-error" id="email-error" role="alert"></span>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required rows="5"></textarea>
-            <span class="form-error" id="message-error" role="alert"></span>
+        <label for="phone">Contact Number</label>
+        <input type="tel" id="phone" name="phone" required autocomplete="tel">
+        <span class="form-error" id="phone-error" role="alert"></span>
           </div>
-          <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required rows="5"></textarea>
+        <span class="form-error" id="message-error" role="alert"></span>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -239,6 +249,16 @@
     <button class="lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
     <button class="lightbox-next" id="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
     <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  </div>
+
+  <!-- Portfolio modal for event galleries -->
+  <div id="portfolio-modal" class="portfolio-modal" aria-hidden="true" hidden>
+    <div class="portfolio-modal-inner">
+      <button class="portfolio-modal-close" id="portfolio-modal-close" aria-label="Close">&times;</button>
+      <h3 id="portfolio-modal-title">Gallery</h3>
+      <div id="portfolio-sections" class="portfolio-sections" role="tablist"></div>
+      <div id="portfolio-content" class="portfolio-content"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -152,6 +152,103 @@
     lightboxImage.alt = galleryImages[currentLightboxIndex].alt;
   }
 
+  // ---- Portfolio event modal (load from /data/<slug>.json) ----
+  const portfolioModal = document.getElementById('portfolio-modal');
+  const portfolioModalClose = document.getElementById('portfolio-modal-close');
+  const portfolioModalTitle = document.getElementById('portfolio-modal-title');
+  const portfolioSections = document.getElementById('portfolio-sections');
+  const portfolioContent = document.getElementById('portfolio-content');
+
+  async function openPortfolio(slug) {
+    try {
+      const res = await fetch('/data/' + slug + '.json');
+      if (!res.ok) throw new Error('Failed to load gallery data');
+      const data = await res.json();
+      portfolioModalTitle.textContent = data.title || slug;
+      portfolioSections.innerHTML = '';
+      portfolioContent.innerHTML = '';
+
+      const sections = Object.keys(data.galleries || {});
+      if (sections.length === 0) {
+        portfolioContent.innerHTML = '<p>No content available.</p>';
+      }
+
+      sections.forEach(function (name, idx) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = name;
+        btn.addEventListener('click', function () { renderSection(data.galleries[name], name); setActiveSection(btn); });
+        portfolioSections.appendChild(btn);
+        if (idx === 0) { btn.classList.add('active'); renderSection(data.galleries[name], name); }
+      });
+
+      portfolioModal.hidden = false;
+      portfolioModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    } catch (err) {
+      alert('Unable to load gallery: ' + err.message);
+    }
+  }
+
+  function setActiveSection(btn) {
+    Array.from(portfolioSections.children).forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  function renderSection(items, name) {
+    portfolioContent.innerHTML = '';
+    if (!items || items.length === 0) { portfolioContent.innerHTML = '<p>No items in this section.</p>'; return; }
+
+    items.forEach(function (path) {
+      const ext = path.split('.').pop().toLowerCase();
+      if (['mp4','webm','ogg'].includes(ext)) {
+        const video = document.createElement('video');
+        video.src = encodeURI(path);
+        video.controls = true;
+        video.loading = 'lazy';
+        portfolioContent.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        img.src = encodeURI(path);
+        img.alt = name + ' image';
+        img.loading = 'lazy';
+        img.addEventListener('click', function () { openLightboxFromSrc(img.src, img.alt); });
+        portfolioContent.appendChild(img);
+      }
+    });
+  }
+
+  function openLightboxFromSrc(src, alt) {
+    // populate galleryImages temporarily and open lightbox at index 0
+    galleryImages = [{ src: src, alt: alt }];
+    currentLightboxIndex = 0;
+    lightboxImage.src = src;
+    lightboxImage.alt = alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  portfolioModalClose.addEventListener('click', function () {
+    portfolioModal.hidden = true;
+    portfolioModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    portfolioContent.innerHTML = '';
+    portfolioSections.innerHTML = '';
+  });
+
+  // Listen for gallery items that open event galleries
+  gallery.addEventListener('click', function (e) {
+    const item = e.target.closest('.gallery-item');
+    if (!item) return;
+    const slug = item.dataset.gallery;
+    if (slug) {
+      openPortfolio(slug);
+      return;
+    }
+    // existing behavior for lightbox
+    openLightbox(parseInt(item.dataset.index, 10));
+  });
+
   gallery.addEventListener("click", function (e) {
     const item = e.target.closest(".gallery-item");
     if (!item) return;
@@ -186,12 +283,14 @@
       message = "This field is required.";
     } else if (field.type === "email" && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
       message = "Please enter a valid email address.";
-    }
+      } else if (field.type === "tel" && field.value && !/^[0-9+()\-\s]{7,20}$/.test(field.value)) {
+        message = "Please enter a valid contact number.";
+      }
 
-    field.classList.toggle("error", !!message);
-    if (errorEl) errorEl.textContent = message;
-    return !message;
-  }
+      field.classList.toggle("error", !!message);
+      if (errorEl) errorEl.textContent = message;
+      return !message;
+    }
 
   function validateForm() {
     const fields = contactForm.querySelectorAll("input, textarea");
@@ -227,9 +326,15 @@
     submitBtn.textContent = "Sending…";
 
     try {
+      const formData = new FormData(contactForm);
+      // include phone explicitly if present
+      if (!formData.get('phone') && document.getElementById('phone')) {
+        formData.append('phone', document.getElementById('phone').value);
+      }
+
       const response = await fetch(formAction, {
         method: "POST",
-        body: new FormData(contactForm),
+        body: formData,
         headers: { Accept: "application/json" },
       });
 
