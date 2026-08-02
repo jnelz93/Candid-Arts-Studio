@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "date"}
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        allow_add: true
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
+      - {label: "Body", name: "body", widget: "markdown"}
